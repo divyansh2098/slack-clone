@@ -1,0 +1,50 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    background-color: var(--slack-color);
+    padding-bottom: 3px;
+}
+.header-left{
+    flex: 0.3;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.header-right{
+    padding-right: 20px;
+}
+
+.header-right .MuiAvatar-root {
+    border-radius: 4px;
+    height: 28px;
+    width: 28px;
+}
+
+.search {
+    display: flex;
+    flex: 0.4;
+    background-color: #421f44;
+    text-align: center;
+    color: gray;
+    border: 1px solid gray;
+    border-radius: 6px;
+    text-align: center;
+    padding: 4px;
+    align-items: center;
+    height: 70%;
+}
+.search input {
+    background-color: transparent;
+    border: none;
+    min-width: 35px;
+    color: white;
+    outline: none;
+    height: 100%;
+    width: 100%;
+}
+.search .MuiSvgIcon-root {
+    cursor: pointer;
+}

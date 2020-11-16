@@ -1,0 +1,43 @@
+.channelStrip {
+    display: flex;
+    color: rgb(188,171,188);
+    padding: 10px 16px;
+    align-items: center;
+    text-align: center;
+}
+
+.profile {
+    position: relative;
+}
+
+.channelStrip .hash {
+    margin: 0px;
+    margin-right: 7px;
+    margin-left: 25px;
+    font-weight: 700;
+}
+
+.profilePhoto {
+    height: 20px;
+    width: 20px;
+    margin-left: 25px;
+    margin-right: 7px;
+    border-radius: 4px;
+}
+
+.onlineIcon {
+    display: flex;
+    position: absolute;
+    top: 13px;
+    left: 38px;
+    justify-content: center;
+    width: 10px;
+    border-radius: 1000px;
+    background-color: black;
+    padding: 0px;
+}
+
+.onlineIcon > .MuiSvgIcon-root {
+    font-size: x-small;
+    color: green;
+}
