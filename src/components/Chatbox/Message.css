@@ -1,0 +1,33 @@
+.message_container {
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
+}
+
+.message_container .message__data {
+    display: flex;
+    align-items: center;
+}
+
+.message__data .message {
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: rgba(0,0,0,0.1);
+    line-height: 18px;
+    font-size: 14px;
+}
+
+.message__data .userImage {
+    height: 30px;
+    width: 30px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+.message_container .time__stamp {
+    line-height: 12px;
+    font-size: 8px;
+    color: rgba(0,0,0,0.7);
+}

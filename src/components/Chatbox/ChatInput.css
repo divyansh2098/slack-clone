@@ -1,0 +1,35 @@
+.send_message {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 10px 20px 10px 20px;
+}
+
+.send_message .chat__input {
+    height: 30px;
+    margin-right: 10px;
+    width: 65%;
+    line-height: 20px;
+    font-size: 16px;
+    border-radius: 15px;
+    outline: none;
+    border: 2px solid var(--slack-color);
+    padding: 0px 0px 0px 10px
+}
+
+.send_message .chat__input:focus {
+    border: 2px solid red;
+}
+
+.send_message .send__button {
+    font-size: 2.5em;
+    cursor: pointer;
+    color: var(--slack-color);
+}
+
+.send_message .MuiTextField-root {
+    width: 100%;
+    margin-right: 20px;
+}

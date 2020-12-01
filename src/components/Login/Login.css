@@ -1,0 +1,33 @@
+.login {
+    background-color: #f8f8f8;
+    display: grid;
+    place-items: center;
+    height: 100vh;
+}
+
+.login__container {
+    padding: 100px;
+    text-align: center;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 2px 1px 5px gray;
+}
+
+.login__container > .MuiButton-root {
+    color: white;
+    text-transform: none;
+}
+
+.login__container > .MuiButton-root:hover {
+    color: black;
+}
+
+.login__container >.MuiButton-contained {
+    background-color: var(--slack-color);
+}
+
+.login__container > img {
+    object-fit: contain;
+    height: 100px;
+    margin-bottom: 40px;
+}

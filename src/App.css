@@ -1,5 +1,6 @@
 .App {
-    --slack-color: #3f0f40
+    --slack-color: #3f0f40;
+    font-family: Slack-Lato,appleLogo,sans-serif;
 }
 
 .app-content {

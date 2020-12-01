@@ -10,7 +10,6 @@ class SidebarContent extends Component {
             <div className="sidebar-content">
                 <SlackBrowser />
                 <Channels text="Channels"/>
-                <Channels text="Direct Messages"/>
             </div>
         )
     }

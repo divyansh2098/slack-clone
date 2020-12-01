@@ -32,3 +32,28 @@
     align-items: center;
     visibility: hidden;
 }
+
+.add_channel {
+    display: flex;
+    color: rgb(188,171,188);
+    align-items: center;
+    margin: 0px 0px 10px 15px;
+    cursor: pointer;
+}
+
+.add_channel:hover {
+    color: white;
+}
+
+.add_channel .addChannel__icon {
+    display: flex;
+    align-items: center;
+    padding: 3px;
+    background-color: #49274b;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+.addChannel__icon .MuiSvgIcon-root {
+    font-size: 18px;
+}

@@ -1,4 +1,5 @@
 import React from 'react'
+import  {useSelector}  from 'react-redux'
 
 //import icons
 import Avatar from '@material-ui/core/Avatar';
@@ -6,12 +7,10 @@ import QueryBuilderIcon from '@material-ui/icons/QueryBuilder';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import SearchIcon from '@material-ui/icons/Search';
 
-//import image
-import profileImage from '../../assets/images/profile.jpg'
-
 import './Header.css'
 
 function Header() {
+  const user = useSelector(state=>state.user)
   return (
     <div className="header">
       <div className="header-left">
@@ -23,7 +22,7 @@ function Header() {
       </div>
       <HelpOutlineIcon />
       <div className="header-right">
-        <Avatar alt="Divyansh Singh" src={profileImage} />
+        <Avatar alt="Divyansh Singh" src={user.photoURL} />
       </div>
     </div>
   )

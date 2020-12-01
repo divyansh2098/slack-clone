@@ -2,4 +2,5 @@
     border-top: 1px solid #49274b;
     padding-top: 15px;
     background-color: var(--slack-color);
+    min-height: 100vh;
 }

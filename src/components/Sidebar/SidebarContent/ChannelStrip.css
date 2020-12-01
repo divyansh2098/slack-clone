@@ -4,6 +4,15 @@
     padding: 10px 16px;
     align-items: center;
     text-align: center;
+    cursor: pointer;
+}
+
+.channelStrip:hover {
+    color: white;
+}
+
+.channelStrip .description {
+    font-size: 14px;
 }
 
 .profile {

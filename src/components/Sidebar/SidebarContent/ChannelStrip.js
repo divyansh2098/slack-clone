@@ -1,27 +1,23 @@
 import React, { Component } from 'react'
-
-import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
+import { useHistory } from 'react-router-dom'
 
 import './ChannelStrip.css'
-class ChannelStrip extends Component {
-    render() {
-        let imagePlaceholder = this.props.img ? <div className="profile">
-                <img alt="profilePhoto" className="profilePhoto" src={this.props.img} />
-                <div className="onlineIcon">
-                    <FiberManualRecordIcon />
-                </div>
-            </div> 
-        : 
-        <p className="hash">#</p>
-        return (
-            <div className="channelStrip">
-                {imagePlaceholder}
-                <div className="description">
-                    {this.props.text}
-                </div>
-            </div>
-        )
+const ChannelStrip = (props) => {
+
+    const history = useHistory();
+    
+    const changeChannelHandler = () => {
+        history.push("/app/" + props.id)
     }
+
+    return (
+        <div className="channelStrip" onClick={changeChannelHandler}>
+            <p className="hash">#</p>
+            <div className="description">
+                {props.text}
+            </div>
+        </div>
+    )
 }
 
 export default ChannelStrip
