@@ -28,13 +28,24 @@
   box-shadow: 0px 10px 50px rgba(5, 0, 12, 0.945);
 }
 
+.form-wrapper h2 {
+  color: #f31276;
+}
+
+.form-wrapper h4 {
+  color: #f31276;
+}
+
 .submit-button {
   border: 3px solid #b90a6d;
-  background-color:#DB2777;
+  background:linear-gradient(90deg, #cc2b5e, #753a88);
   color: white;
   border-radius: 0.25rem;
   height: 30px;
   width: 200px;
+  line-height: 20px;
+  font-size: 16px;
+  text-transform: uppercase;
 }
 
 .swal-modal .swal-text {

@@ -12,13 +12,14 @@ const useStyles = (theme) => ({
     root: {
         "& .MuiTextField-root": {
           margin: theme.spacing(1),
-          width: "25ch",
-          
-        }
+          width: "25ch", 
+        },
         
-    
-    
+          ".MuiPaper-rounded": {
+            borderRadius:"6px"
+        }
       }
+
   });
 
 
@@ -66,7 +67,7 @@ class UserForm extends Component {
       `,
       icon: "success",
       button:"Let's Go Ahead"
-    });
+    }, this.props.setShowBanner(true) );
 
   };
 
@@ -77,7 +78,7 @@ class UserForm extends Component {
       <div className="wrapper">
       <Card className="form-wrapper">
         <form className={classes.root} onSubmit={this.submitHandler} noValidate>
-          <h2 style={{ color: '#f31276' }}>Let's get you started</h2>
+          <h2 >Let's get you started</h2>
           <Grid container spacing={12} >
           <Grid  item xs={6}>
             <TextField
@@ -112,7 +113,7 @@ class UserForm extends Component {
             />
           </div>
           <div>
-            <h4 style={{ color: '#f31276' }}>A saying you live by</h4>
+            <h4 >A saying you live by</h4>
             <TextField
               className="quote"
               variant="filled"
@@ -122,7 +123,7 @@ class UserForm extends Component {
               onChange={this.changeHandler("quote")}
             />
           </div>
-          <h4 style={{ color: '#f31276' }}>Your Social Media Presence</h4>
+          <h4 >Your Social Media Presence</h4>
           <Grid container spacing={12}>
               <Grid item xs={6}>
             <TextField
