@@ -3,6 +3,7 @@
     display: grid;
     place-items: center;
     height: 100vh;
+    background: linear-gradient(90deg,#cc2b5e,#753a88);;
 }
 
 .login__container {

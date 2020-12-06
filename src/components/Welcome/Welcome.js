@@ -1,29 +1,27 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
-import {storage} from '../../firebase'
 import { useSelector } from 'react-redux'
+import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
+import Image from '../../assets/images/Messages_undraw.svg'
+
 import './Welcome.css'
-function Welcome() {
-    const [imageUrl, setImageUrl] = useState('')
+import { useHistory } from 'react-router-dom';
+function Welcome(props) {
+    const history = useHistory()
     const user = useSelector(state => state.user)
-    useEffect(() => {
-        const pathReference = storage.ref('Messages_undraw.svg')
-        pathReference.getDownloadURL().then(url => {
-            setImageUrl(url)      
-        }).catch((err)=> {
-            console.log(err.message)
-        })
-    },[])
+
     return (
         <div className="welcome_container">
-            <div className="welcome_message">
-                <h1>Welcome,</h1>
-                <h1>{user.displayName}</h1>
-                <img src={user.photoURL} alt=""/>
-            </div>
+            {user && 
+                <div className="welcome_message">
+                    <h1>Welcome,</h1>
+                    <h1>{user.displayName}</h1>
+                    <img src={user.photoURL} alt=""/>
+                </div>
+            }
             <div className="about_app">
                 <div className="message__img">
-                    <img src={imageUrl} alt=""/>
+                    <img src={Image} alt=""/>
                 </div>
                 <div className="instructions">
                     <ul>
@@ -31,6 +29,10 @@ function Welcome() {
                         <li>Chat with friends</li>
                         <li>Feedback at divyanshnaman1998@gmail.com</li>
                     </ul>
+                    <button className="next-button" onClick={() => props.click(true)}>
+                        Next
+                        <DoubleArrowIcon /> 
+                    </button>
                 </div>
             </div>
         </div>

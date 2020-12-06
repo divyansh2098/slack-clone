@@ -5,21 +5,49 @@
     flex-direction: column;
     align-items: center;
     color: var(--slack-color);
+    min-height: 100vh;
 }
 
 .welcome_container .about_app {
     display: flex;
+    width: 100%;
     align-items: center;
-    justify-content: center;
 }
 
 .about_app .message__img {
-    padding: 50px;
+    display: flex;
+    flex: 0.5;
+    justify-content: center;
+    align-items: flex-start;
     border-right: 1px solid var(--slack-color);
 }
 
+.about_app .instructions {
+    display: flex;
+    flex: 0.5;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.instructions .next-button {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    justify-content: space-around;
+    line-height: 20px;
+    font-size: 16px;
+    font-weight: 700;
+    height: 50px;
+    width: 100px;
+    background-color: #cc2b5e;
+    border: none;
+    border-radius: 12px;
+    color: var(--slack-color);
+    box-shadow: 0 5px 8px 0px rgba(0,0,0,0.12);
+}
+
 .welcome_container .message__img > img {
-    height: 200px;
+    height: 300px;
     object-fit: contain;
 }
 

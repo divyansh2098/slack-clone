@@ -7,13 +7,17 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Chip from "@material-ui/core/Chip";
 import Avatar from "@material-ui/core/Avatar";
+import TwitterIcon from '@material-ui/icons/Twitter';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import InstagramIcon from '@material-ui/icons/Instagram';
+
 import "./AboutMe.css";
 
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
     maxWidth: 400,
-    margin: "auto",
+    marginBottom: 50,
     borderRadius: "1.25rem"
   },
   bullet: {
@@ -27,18 +31,26 @@ const useStyles = makeStyles({
   pos: {
     marginBottom: 12
   },
-
   chip: {
     margin: "1rem"
+  },
+
+  cardContent: {
+    textAlign: 'center'
+  },
+
+  cardIcons: {
+    display: 'flex',
+    justifyContent: 'center'
   }
 });
 
 const AboutMe = () => {
   const classes = useStyles();
   return (
-    <React.Fragment>
+    <div className="about-me-container">
       <Card className={classes.root}>
-        <CardContent>
+        <CardContent className={classes.cardContent}>
           <Typography variant="h5" component="h2">
             About Me
           </Typography>
@@ -59,43 +71,41 @@ const AboutMe = () => {
             Why say lot words when few words do trick
           </Typography>
         </CardContent>
-        <CardActions>
+        <CardActions className={classes.cardIcons}>
           <Button href="http://www.github.com" size="small">
-            VIEW MY GITHUB
+            <TwitterIcon />
           </Button>
           <Button href="http://www.twitter.com" size="small">
-            VIEW MY twitter
+            <FacebookIcon />
           </Button>
           <Button href="http://www.linkedin.com" size="small">
-            VIEW MY LINKEDIN
-          </Button>
-          <Button href="http://www.facebook.com" size="small">
-            VIEW MY FACEBOOK
+            <InstagramIcon />
           </Button>
         </CardActions>
       </Card>
 
-      <br />
-      <Chip
-        className={classes.chip}
-        label="owner"
-        color="primary"
-        avatar={<Avatar>O</Avatar>}
-      />
-      <Chip
-        className={classes.chip}
-        disabled
-        label="admin"
-        color="secondary"
-        avatar={<Avatar>A</Avatar>}
-      />
-      <Chip
-        className={classes.chip}
-        label="moderator"
-        color="default"
-        avatar={<Avatar>M</Avatar>}
-      />
-    </React.Fragment>
+      <div className="role-chips">
+        <Chip
+          className={classes.chip}
+          label="owner"
+          color="primary"
+          avatar={<Avatar>O</Avatar>}
+        />
+        <Chip
+          className={classes.chip}
+          disabled
+          label="admin"
+          color="secondary"
+          avatar={<Avatar>A</Avatar>}
+        />
+        <Chip
+          className={classes.chip}
+          label="moderator"
+          color="default"
+          avatar={<Avatar>M</Avatar>}
+        />
+      </div>
+    </div>
   );
 };
 

@@ -2,4 +2,16 @@
     background: linear-gradient(90deg, #cc2b5e, #753a88);
     color: var(--slack-color);
   }
-  
+
+.about-me-container {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.about-me-container .role-chips {
+  display: flex;
+  align-items: flex-start;
+}

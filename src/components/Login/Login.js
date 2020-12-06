@@ -11,8 +11,14 @@ class Login extends Component {
     initiateSignIn = () => {
         auth.signInWithPopup(provider)
             .then(result => {
-                this.props.setUserData(result.user)
-                console.log(this.props.user)
+                const userData = {
+                    id: result.additionalUserInfo.profile.id,
+                    name: result.user.displayName,
+                    email: result.user.email,
+                    isNewUser: result.additionalUserInfo.isNewUser,
+                    photoURL: result.user.photoURL
+                }
+                this.props.setUserData(userData)
             })
             .catch(err => {
                 console.log(err.message)
