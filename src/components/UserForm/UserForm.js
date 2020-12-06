@@ -3,11 +3,13 @@ import React, { Component } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
-import swal from 'sweetalert';
 import db from '../../firebase'
+import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 import "./UserForm.css";
 import { connect } from "react-redux";
+
 
 
 const useStyles = (theme) => ({
@@ -16,7 +18,12 @@ const useStyles = (theme) => ({
           margin: theme.spacing(1),
           width: "25ch", 
         }
-      }
+      },
+      modal :{
+        color:"#f31276" 
+        
+      },
+      
 
   });
 
@@ -31,7 +38,10 @@ class UserForm extends Component {
       facebook: "",
       twitter: "",
       snapchat:""
-    }
+    },
+    setOpen:false,
+    open:false
+    
   };
 
   changeHandler = (input) => (event) => {
@@ -47,32 +57,15 @@ class UserForm extends Component {
 
   submitHandler = (event) => {
     event.preventDefault();
-    const {id, ...userData} = this.props.user
-    const formData = {
-      ...this.state.userData
-    }
-    db.collection('users').doc(formData.userName).set({
-      ...userData,
-      ...formData
-    })
-
-    swal({
-      title:"SUBMITTED",
-      text:`
-      First Name : ${this.state.userData.firstName}
-      Last Name : ${this.state.userData.lastName}
-       About You: ${this.state.userData.bio}
-       What You Live By : ${this.state.userData.quote}
-       FaceBook : ${this.state.userData.facebook}
-       Instagram : ${this.state.userData.instagram}
-       Twitter : ${this.state.userData.twitter}
-       SnapChat : ${this.state.userData.snapchat}
-      `,
-      icon: "success",
-      button:"Let's Go Ahead"
-    });
-
+    this.setState({setOpen:true,open:true}, () => {console.log(this.state)});
+   
   };
+
+  handleClose = () => {
+    this.setState({setOpen:false,open:false});
+  };
+
+  
 
   render() {
     const { classes } = this.props;
@@ -165,14 +158,52 @@ class UserForm extends Component {
               onChange={this.changeHandler("snapchat")}
             />
             </Grid>
-            
           </Grid>
           <div>
             <button className="submit-button" type="submit">Submit</button>
           </div>
         </form>
       </Card>
+
+      <Dialog
+        open={this.state.open}
+        onClose={this.handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle className={classes.modal} id="alert-dialog-title">SUBMITTED SUCCESFULLY</DialogTitle>
+        <div className="modal-div">
+          Name :{this.state.userData.firstName} {this.state.userData.lastName}
+          <br/>
+          About yourself : {this.state.userData.bio}
+          <br/>
+          A saying You live by : {this.state.userData.quote}
+          <br/>
+        </div>
+        <DialogTitle className={classes.modal}>Your Social Media Presence</DialogTitle>
+        <div className="modal-div">
+        FaceBook : {this.state.userData.facebook}
+          <br/>
+        Instagram : {this.state.userData.instagram}
+          <br/>
+        Twitter : {this.state.userData.twitter}
+          <br/>
+        SnapChat : {this.state.userData.snapchat}
+          <br/>
+        </div>
+
+        
+        <div className="wrapper">
+            <button onClick={this.handleClose} className="modal-button" >OK</button>
+          </div>
+        
+
+      </Dialog>
+
       </div>
+
+// 
+      
     );
   }
 }
