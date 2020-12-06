@@ -1,0 +1,21 @@
+:root {
+    background: linear-gradient(90deg, #cc2b5e, #753a88);
+    
+}
+
+.container {
+    padding: 5% 10% 5% 10%;
+    
+    
+}
+
+.title {
+    color: #753a88;
+    font-size: x-large;
+    font-weight: 800;
+}
+
+.heading {
+    color: #b90a6d;
+}
+

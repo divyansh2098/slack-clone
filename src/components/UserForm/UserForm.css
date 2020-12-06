@@ -17,7 +17,6 @@
 
 .form-wrapper {
   background-color: white;
-  border-radius: 2rem;
   text-align: center;
   min-width: 275px;
   max-width: 450px;
@@ -27,6 +26,8 @@
   padding: 10px 40px;
   box-shadow: 0px 10px 50px rgba(5, 0, 12, 0.945);
 }
+
+
 
 .form-wrapper h2 {
   color: #f31276;
@@ -48,13 +49,20 @@
   text-transform: uppercase;
 }
 
-.swal-modal .swal-text {
+
+.modal-div {
   text-align: center;
+  color: grey;
 }
 
-.swal-modal .swal-button {
+.modal-button {
+  border: 3px solid #b90a6d;
+  background:linear-gradient(90deg, #cc2b5e, #753a88);
   color: white;
-  background-color: #DB2777;
-  text-align: center;
-  
+  border-radius: 0.25rem;
+  height: 30px;
+  width: 60px;
+  line-height: 20px;
+  font-size: 16px;
+  text-transform: uppercase;
 }
