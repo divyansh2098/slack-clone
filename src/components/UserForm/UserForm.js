@@ -6,6 +6,8 @@ import Grid from '@material-ui/core/Grid';
 import db from '../../firebase'
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import DoneIcon from '@material-ui/icons/Done';
+import ClearIcon from '@material-ui/icons/Clear';
 
 import "./UserForm.css";
 import { connect } from "react-redux";
@@ -25,7 +27,7 @@ const useStyles = (theme) => ({
       },
       
 
-  });
+});
 
 
 class UserForm extends Component {
@@ -39,9 +41,8 @@ class UserForm extends Component {
       twitter: "",
       snapchat:""
     },
-    setOpen:false,
-    open:false
-    
+    open:false,
+    userNameExists: false  
   };
 
   changeHandler = (input) => (event) => {
@@ -51,18 +52,41 @@ class UserForm extends Component {
     };
     updateduserData[input] = event.target.value;
 
-    this.setState({ userData:updateduserData });
+    this.setState({ userData: updateduserData });
     
   };
 
   submitHandler = (event) => {
     event.preventDefault();
-    this.setState({setOpen:true,open:true}, () => {console.log(this.state)});
-   
+    this.setState({open:true});
+
+    let userData = {...this.state.userData}
+    let {id,...user} = {...this.props.user}
+
+    let exists = false
+    console.log(userData.userName)
+    userData.userName && db.collection('users').doc(userData.userName).get().then(data=>{
+      const givenDoc = data.data()
+      if(givenDoc) {
+        exists = true;
+        this.setState({
+          userNameExists: true
+        })
+      }
+    })
+    .then(()=>{
+      if(!exists) {
+        userData.userName && db.collection('users').doc(userData.userName).set({
+          ...userData,
+          ...user
+        })
+      }
+    })
+ 
   };
 
   handleClose = () => {
-    this.setState({setOpen:false,open:false});
+    this.setState({open:false});
   };
 
   
@@ -79,8 +103,8 @@ class UserForm extends Component {
             <Grid item xs={12}>
             <TextField
               className="userName"
-              error = {false}
-              helperText= {null}
+              error = {this.state.userNameExists}
+              helperText= {this.state.userNameExists ? "User Name already exists" : null}
               label="username"
               style = {{width: 440}}
               variant="outlined"
@@ -173,7 +197,7 @@ class UserForm extends Component {
       >
         <DialogTitle className={classes.modal} id="alert-dialog-title">SUBMITTED SUCCESFULLY</DialogTitle>
         <div className="modal-div">
-          Name :{this.state.userData.firstName} {this.state.userData.lastName}
+          User Name : {this.state.userData.userName}
           <br/>
           About yourself : {this.state.userData.bio}
           <br/>
@@ -182,28 +206,20 @@ class UserForm extends Component {
         </div>
         <DialogTitle className={classes.modal}>Your Social Media Presence</DialogTitle>
         <div className="modal-div">
-        FaceBook : {this.state.userData.facebook}
+        FaceBook : {this.state.userData.facebook ? <DoneIcon style={{color: 'green'}} /> : <ClearIcon style={{color:'red'}} />}
           <br/>
-        Instagram : {this.state.userData.instagram}
+        Instagram : {this.state.userData.instagram ? <DoneIcon style={{color: 'green'}} /> : <ClearIcon style={{color:'red'}} />}
           <br/>
-        Twitter : {this.state.userData.twitter}
+        Twitter : {this.state.userData.twitter ? <DoneIcon style={{color: 'green'}} /> : <ClearIcon style={{color:'red'}} />}
           <br/>
-        SnapChat : {this.state.userData.snapchat}
+        SnapChat : {this.state.userData.snapchat ? <DoneIcon style={{color: 'green'}} /> : <ClearIcon style={{color:'red'}} />}
           <br/>
         </div>
-
-        
         <div className="wrapper">
             <button onClick={this.handleClose} className="modal-button" >OK</button>
           </div>
-        
-
       </Dialog>
-
-      </div>
-
-// 
-      
+      </div>   
     );
   }
 }
