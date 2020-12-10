@@ -11,6 +11,8 @@ import ClearIcon from '@material-ui/icons/Clear';
 
 import "./UserForm.css";
 import { connect } from "react-redux";
+import { withRouter } from 'react-router-dom';
+import { green } from "@material-ui/core/colors";
 
 
 
@@ -18,17 +20,25 @@ const useStyles = (theme) => ({
     root: {
         "& .MuiTextField-root": {
           margin: theme.spacing(1),
-          width: "25ch", 
-        }
-      },
-      modal :{
-        color:"#f31276" 
+          width: "25ch",
+          },
+        '& label.Mui-focused': {
+          color: 'green',
+          },
+
+          '& .MuiOutlinedInput-root': {
+            '&.Mui-focused fieldset': {
+              borderColor: 'green',
+            },
+          },
+    },
+
+    modal :{
+        color:"#753a88" 
         
       },
-      
-
 });
-
+//
 
 class UserForm extends Component {
   state = {
@@ -58,20 +68,21 @@ class UserForm extends Component {
 
   submitHandler = (event) => {
     event.preventDefault();
-    this.setState({open:true});
 
     let userData = {...this.state.userData}
     let {id,...user} = {...this.props.user}
 
     let exists = false
-    console.log(userData.userName)
     userData.userName && db.collection('users').doc(userData.userName).get().then(data=>{
       const givenDoc = data.data()
       if(givenDoc) {
         exists = true;
         this.setState({
           userNameExists: true
-        })
+        }, ( ) => { setTimeout(() => {
+          this.setState({userNameExists:false})
+      }, 5000); } )
+        
       }
     })
     .then(()=>{
@@ -79,7 +90,11 @@ class UserForm extends Component {
         userData.userName && db.collection('users').doc(userData.userName).set({
           ...userData,
           ...user
-        })
+        } ) 
+        .then( () => { 
+          this.setState({open:true});
+         })
+         .catch( (err) => {console.log(err.message)} )
       }
     })
  
@@ -90,6 +105,9 @@ class UserForm extends Component {
   };
 
   
+  redirect = () => {
+    this.props.history.push('/guidelines')
+  }
 
   render() {
     const { classes } = this.props;
@@ -102,7 +120,7 @@ class UserForm extends Component {
           <Grid container spacing={12} >
             <Grid item xs={12}>
             <TextField
-              className="userName"
+              
               error = {this.state.userNameExists}
               helperText= {this.state.userNameExists ? "User Name already exists" : null}
               label="username"
@@ -110,7 +128,7 @@ class UserForm extends Component {
               variant="outlined"
               onChange={this.changeHandler("userName")}
               margin="dense"
-              color="secondary"
+              
             />
             </Grid>
           </Grid>
@@ -130,9 +148,8 @@ class UserForm extends Component {
             <h4 >A saying you live by</h4>
             <TextField
               className="quote"
-              variant="filled"
+              variant="outlined"
               margin="dense"
-              color="secondary"
               style = {{width: 440}}
               onChange={this.changeHandler("quote")}
             />
@@ -145,7 +162,7 @@ class UserForm extends Component {
               label="FaceBook"
               variant="outlined"
               margin="dense"
-              color="secondary"
+              
               onChange={this.changeHandler("facebook")}
             />
             </Grid>
@@ -155,7 +172,7 @@ class UserForm extends Component {
               label="Instagram"
               variant="outlined"
               margin="dense"
-              color="secondary"
+              
               onChange={this.changeHandler("instagram")}
             />
             </Grid>
@@ -167,7 +184,7 @@ class UserForm extends Component {
               label="Twitter"
               variant="outlined"
               margin="dense"
-              color="secondary"
+              
               onChange={this.changeHandler("twitter")}
             />
             </Grid>
@@ -176,7 +193,7 @@ class UserForm extends Component {
             <TextField
               className="snapchat"
               label="SnapChat"
-              color="secondary"
+              
               variant="outlined"
               margin="dense"
               onChange={this.changeHandler("snapchat")}
@@ -185,6 +202,7 @@ class UserForm extends Component {
           </Grid>
           <div>
             <button className="submit-button" type="submit">Submit</button>
+            <button onClick={this.redirect} >click for guidelines</button>
           </div>
         </form>
       </Card>
@@ -206,14 +224,18 @@ class UserForm extends Component {
         </div>
         <DialogTitle className={classes.modal}>Your Social Media Presence</DialogTitle>
         <div className="modal-div">
+        <p>
         FaceBook : {this.state.userData.facebook ? <DoneIcon style={{color: 'green'}} /> : <ClearIcon style={{color:'red'}} />}
-          <br/>
+        </p>
+        <p>
         Instagram : {this.state.userData.instagram ? <DoneIcon style={{color: 'green'}} /> : <ClearIcon style={{color:'red'}} />}
-          <br/>
+        </p>
+        <p>
         Twitter : {this.state.userData.twitter ? <DoneIcon style={{color: 'green'}} /> : <ClearIcon style={{color:'red'}} />}
-          <br/>
+        </p>
+        <p>
         SnapChat : {this.state.userData.snapchat ? <DoneIcon style={{color: 'green'}} /> : <ClearIcon style={{color:'red'}} />}
-          <br/>
+        </p>
         </div>
         <div className="wrapper">
             <button onClick={this.handleClose} className="modal-button" >OK</button>
@@ -230,4 +252,4 @@ const mapStatetoProps = state => {
   }
 }
 
-export default connect(mapStatetoProps,null)(withStyles(useStyles)(UserForm));
+export default connect(mapStatetoProps,null)(withStyles(useStyles)(withRouter(UserForm)));
