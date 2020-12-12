@@ -250,18 +250,14 @@ class UserForm extends Component {
         </div>
         <DialogTitle className={classes.modal}>Your Social Media Presence</DialogTitle>
         <div className="modal-div">
-        <p>
+        <div className="social-divs"> 
         FaceBook : {this.state.userData.facebook ? <DoneIcon style={{color: 'green'}} /> : <ClearIcon style={{color:'red'}} />}
-        </p>
-        <p>
         Instagram : {this.state.userData.instagram ? <DoneIcon style={{color: 'green'}} /> : <ClearIcon style={{color:'red'}} />}
-        </p>
-        <p>
+        </div>
+        <div className="social-divs">
         Twitter : {this.state.userData.twitter ? <DoneIcon style={{color: 'green'}} /> : <ClearIcon style={{color:'red'}} />}
-        </p>
-        <p>
         SnapChat : {this.state.userData.snapchat ? <DoneIcon style={{color: 'green'}} /> : <ClearIcon style={{color:'red'}} />}
-        </p>
+        </div>
         </div>
         <div className="wrapper">
             <button onClick={this.handleClose} className="modal-button" >OK</button>
