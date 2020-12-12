@@ -8,6 +8,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DoneIcon from '@material-ui/icons/Done';
 import ClearIcon from '@material-ui/icons/Clear';
+import SaveIcon from '@material-ui/icons/Save';
 
 import "./UserForm.css";
 import { connect } from "react-redux";
@@ -22,14 +23,36 @@ const useStyles = (theme) => ({
           width: "25ch",
           },
         '& label.Mui-focused': {
-          color: 'green',
+          color: 'var(primary-background)',
           },
 
           '& .MuiOutlinedInput-root': {
             '&.Mui-focused fieldset': {
-              borderColor: 'green',
-            },
+              borderColor: 'var(--primary-background)',
           },
+        },
+    },
+
+    card: {
+      backgroundColor: 'var(--primary-content)',
+      textAlign: 'center',
+      minWidth: '275px',
+      maxWidth: '450px',
+      margin: 'auto',
+      display: 'flex',
+      flexDirection: 'column',
+      padding: '10px 40px',
+      color: 'var(--primary-background)',
+      borderRadius: '24px'
+    },
+
+    textField: {
+      "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+        borderColor: "var(--primary-background)"
+      },
+      "& .MuiOutlinedInput-input": {
+        color: "var(--primary-background)"
+      },
     },
 
     modal :{
@@ -113,13 +136,13 @@ class UserForm extends Component {
 
     return (
       <div className="wrapper">
-      <Card className="form-wrapper">
+      <Card className={classes.card + ' form-wrapper'}>
         <form className={classes.root} onSubmit={this.submitHandler} noValidate>
           <h2 >Let's get you started</h2>
           <Grid container spacing={12} >
             <Grid item xs={12}>
             <TextField
-              
+              className={classes.textField}
               error = {this.state.userNameExists}
               helperText= {this.state.userNameExists ? "User Name already exists" : null}
               label="username"
@@ -133,10 +156,9 @@ class UserForm extends Component {
           </Grid>
           <div>
             <TextField
-              className="bio"
+              className={classes.textField}
               label="Tell us about yourself"
               multiline
-              color="secondary"
               rows="2"
               style = {{width: 440}}
               variant="outlined"
@@ -146,7 +168,7 @@ class UserForm extends Component {
           <div>
             <h4 >A saying you live by</h4>
             <TextField
-              className="quote"
+              className={classes.textField}
               variant="outlined"
               margin="dense"
               style = {{width: 440}}
@@ -157,8 +179,8 @@ class UserForm extends Component {
           <Grid container spacing={12}>
               <Grid item xs={6}>
             <TextField
-              className="facebook"
-              label="FaceBook"
+              className={classes.textField}
+              label="Facebook"
               variant="outlined"
               margin="dense"
               
@@ -167,7 +189,7 @@ class UserForm extends Component {
             </Grid>
             <Grid item xs={6}>
             <TextField
-              className="instagram"
+              className={classes.textField}
               label="Instagram"
               variant="outlined"
               margin="dense"
@@ -179,7 +201,7 @@ class UserForm extends Component {
             <Grid container spacing={12}>
             <Grid item xs={6}>
             <TextField
-              className="twitter"
+              className={classes.textField}
               label="Twitter"
               variant="outlined"
               margin="dense"
@@ -190,8 +212,8 @@ class UserForm extends Component {
             
             <Grid item xs={6}>
             <TextField
-              className="snapchat"
-              label="SnapChat"
+              className={classes.textField}
+              label="Snapchat"
               
               variant="outlined"
               margin="dense"
@@ -200,8 +222,13 @@ class UserForm extends Component {
             </Grid>
           </Grid>
           <div>
-            <button className="submit-button" type="submit">Submit</button>
-            <button onClick={this.redirect} >click for guidelines</button>
+            <button className="submit-button" type="submit">
+              <div className="buttonContent">
+                <p>Save</p>
+                <SaveIcon />
+              </div>
+            </button>
+            {/* <button onClick={this.redirect} >click for guidelines</button> */}
           </div>
         </form>
       </Card>

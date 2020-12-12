@@ -2,7 +2,7 @@ import React from 'react'
 
 import { useSelector } from 'react-redux'
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
-import Image from '../../assets/images/Messages_undraw.svg'
+import Image from '../../assets/images/UndrawChat.svg'
 
 import './Welcome.css'
 import { useHistory } from 'react-router-dom';
@@ -30,7 +30,7 @@ function Welcome(props) {
                         <li>Feedback at divyanshnaman1998@gmail.com</li>
                     </ul>
                     <button className="next-button" onClick={() => props.click(true)}>
-                        Next
+                        Continue
                         <DoubleArrowIcon /> 
                     </button>
                 </div>

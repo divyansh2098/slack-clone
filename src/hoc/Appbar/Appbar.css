@@ -2,8 +2,7 @@ body {
     margin: 0;
   }
   
-  .navbar {
-    background: linear-gradient(90deg, #cc2b5e, #753a88);
+.navbar {
     display: flex;
     color: white;
     padding: 1rem;

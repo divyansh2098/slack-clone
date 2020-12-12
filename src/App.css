@@ -1,4 +1,11 @@
 .App {
     --slack-color: #3f0f40;
     font-family: Slack-Lato,appleLogo,sans-serif;
+    --primary-background: #022449;
+    --secondary-background: #96ffff;
+    --secondary-content: #55bdca;
+    --primary-content: #c8eff9;
+    --primary-highlight: #f27d42;
+    background-color: var(--primary-background);
+    color: var(--primary-content);
 }
