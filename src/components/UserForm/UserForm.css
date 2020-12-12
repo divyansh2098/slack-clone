@@ -74,3 +74,10 @@
   font-weight: 700;
   text-transform: uppercase;
 }
+
+
+.social-divs {
+  display: flex;
+  margin: 1.15em;
+  justify-content: space-between;
+}
