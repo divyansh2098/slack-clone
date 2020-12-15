@@ -228,7 +228,7 @@ class UserForm extends Component {
                 <SaveIcon />
               </div>
             </button>
-            {/* <button onClick={this.redirect} >click for guidelines</button> */}
+            <button onClick={this.redirect} >click for guidelines</button>
           </div>
         </form>
       </Card>

@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import {auth, provider} from '../../firebase'
 import {setUserData} from '../../store/index'
 
+import LoginImage from '../../assets/images/UndrawNotification.svg'
+
 import Button from '@material-ui/core/Button';
 
 import './Login.css'
@@ -28,8 +30,8 @@ class Login extends Component {
         return (
             <div className="login">
                 <div className="login__container">
-                    <img src="https://cdn.mos.cms.futurecdn.net/SDDw7CnuoUGax6x9mTo7dd.jpg" alt=""/>
-                    <h2>Sign In to Divyansh's Slack Clone</h2>
+                    <img src={LoginImage} alt=""/>
+                    <h2>Sign In to WUPHF</h2>
                     <Button variant='contained' onClick={this.initiateSignIn}>Sign In with Google</Button>
                 </div>
             </div>

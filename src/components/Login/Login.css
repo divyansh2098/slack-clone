@@ -4,6 +4,7 @@
     place-items: center;
     height: 100vh;
     background-color: var(--primary-background);
+    color: var(--primary-background);
 }
 
 .login__container {
@@ -27,6 +28,6 @@
 
 .login__container > img {
     object-fit: contain;
-    height: 100px;
+    height: 150px;
     margin-bottom: 40px;
 }
