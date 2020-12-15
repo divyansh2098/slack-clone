@@ -1,5 +1,9 @@
 .chat-app-content {
     display: flex;
     width: 100%;
-    justify-content: space-between;
+    min-height: var(--page-height);
+}
+
+.chat-app-content .main-application {
+    flex: 0.75;
 }

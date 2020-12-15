@@ -6,6 +6,7 @@
     --secondary-content: #55bdca;
     --primary-content: #c8eff9;
     --primary-highlight: #f27d42;
+    --page-height: 100vh;
     background-color: var(--primary-background);
     color: var(--primary-content);
 }

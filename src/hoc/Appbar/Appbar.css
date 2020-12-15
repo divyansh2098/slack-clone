@@ -6,9 +6,13 @@ body {
     display: flex;
     color: white;
     padding: 1rem;
+    padding-bottom: 0;
+    border-bottom: 4px solid var(--primary-highlight);
+    background: linear-gradient(90deg,var(--secondary-background),10%,var(--primary-background));
     margin: 0;
     align-items: center;
     justify-content: space-between;
+    
   }
   
   .navbar-icon .slack-image {
