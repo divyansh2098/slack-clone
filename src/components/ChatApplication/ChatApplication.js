@@ -14,7 +14,7 @@ function ChatApplication() {
             <div className="main-application">
                 <Appbar>
                     <Switch>
-                        <Route path="/chat/:roomId" exact component={Chatbox} />
+                        <Route path="/chat/roomId" exact component={Chatbox} />
                         <Route path="/chat" exact component={Guidelines} />
                     </Switch>
                 </Appbar>

@@ -9,24 +9,30 @@
 
 .send_message .chat__input {
     height: 30px;
+    color: white;
     margin-right: 10px;
     width: 65%;
     line-height: 20px;
     font-size: 16px;
-    border-radius: 15px;
+    border-radius: 4px;
     outline: none;
-    border: 2px solid var(--slack-color);
-    padding: 0px 0px 0px 10px
+    border: none;
+    padding: 0px 0px 0px 10px;
+    border: 2px solid var(--primary-highlight);
+    background-color: var(--primary-background);
 }
 
-.send_message .chat__input:focus {
-    border: 2px solid red;
+.chat__input::placeholder {
+    color: var(--primary-highlight);
 }
 
-.send_message .send__button {
-    font-size: 2.5em;
+.send_message .sendButton {
     cursor: pointer;
-    color: var(--slack-color);
+    color: var(--primary-background);
+}
+
+.sendButton .MuiSvgIcon-root {
+    font-size: 2.2rem;
 }
 
 .send_message .MuiTextField-root {

@@ -1,5 +1,7 @@
 .sidebar-content {
-    border-top: 1px solid #49274b;
     padding-top: 15px;
-    background-color: var(--slack-color);
+    background-color: var(--primary-background);
+    border-right: 4px solid var(--primary-highlight);
+    color: var(--secondary-content);
+    min-height: 88.5vh;
 }

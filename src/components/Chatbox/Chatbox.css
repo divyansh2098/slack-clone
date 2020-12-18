@@ -1,4 +1,5 @@
 .chatBoxContainer {
     background-color: var(--primary-content);
     color: var(--primary-background);
+    height: 88.5vh;
 }

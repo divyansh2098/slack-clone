@@ -1,0 +1,7 @@
+.chatAppBarContainer {
+    height: 48px;
+    width: 100%;
+    background: linear-gradient(90deg,var(--primary-highlight) 45%,var(--secondary-content) 55%);
+    border-bottom: 4px solid var(--primary-background);
+    text-align: center;
+}

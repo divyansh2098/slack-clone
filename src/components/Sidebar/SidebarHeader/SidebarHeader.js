@@ -1,21 +1,23 @@
 import React, { Component } from 'react'
 
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import EditIcon from '@material-ui/icons/Edit';
+import Image from '../../../assets/images/UndrawNotification.svg'
 
 import './SidebarHeader.css'
 export default class SidebarHeader extends Component {
     render() {
         return (
             <div className = "sideBarHeader">
-                <div className="projectHeading">
-                    {/* {Expand to show a modal with project options} */}
-                    <p className="projectText">Test</p>
-                    <ExpandMoreIcon />
+                <div className="navbar-icon">
+                    <img
+                        className="slack-image"
+                        src={Image}
+                        alt=""
+                    />
                 </div>
-                <div className="editIcon">
-                    <EditIcon />
-                </div>
+                <p className="sidebar-heading">
+                    WUPHF
+                </p>
+                <div className="statusIcon"></div>
             </div>
         )
     }
