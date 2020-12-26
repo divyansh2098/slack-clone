@@ -9,6 +9,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DoneIcon from '@material-ui/icons/Done';
 import ClearIcon from '@material-ui/icons/Clear';
 import SaveIcon from '@material-ui/icons/Save';
+import firebase from 'firebase'
 
 import {setUserData} from '../../store/actions/action'
 
@@ -97,34 +98,42 @@ class UserForm extends Component {
     let userData = {...this.state.userData}
     let {id,...user} = {...this.props.user}
 
-    let exists = false
-    userData.userName && db.collection('users').doc(userData.userName).get().then(data=>{
-      const givenDoc = data.data()
-        if(givenDoc) {
-          exists = true;
+    let uid = firebase.auth().currentUser.uid
+
+    db.collection('userName').doc(userData.userName).get()
+    .then(doc=>{
+      if(doc.exists) {
+        this.setState({
+          userNameExists: true
+        }, () => setTimeout(()=>{
           this.setState({
-            userNameExists: true
-          }, () => { setTimeout(() => {
-            this.setState({userNameExists:false})
-        }, 3000); } )
+            userNameExists: false
+          })
+        },3000))
       }
     })
-    .then(()=>{
-      if(!exists) {
-        userData.userName && db.collection('users').add({
-          ...userData,
-          ...user
-        } ) 
-        .then( (docRef) => { 
-          this.setState({open:true});
-          const updatedUser = {...user, id: docRef.id}
-          console.log(updatedUser)
-          this.props.setUserData(updatedUser)
-         })
-         .catch( (err) => {console.log(err.message)} )
+    .then(() => {
+      if(!this.state.userNameExists) {
+        db.collection('users').doc(uid).set({
+          ...user,
+          ...userData
+        })
+        .then(d => {
+          db.collection('userName').doc(userData.userName).set({
+            uid: uid
+          })
+        })
+        .then(data => {
+          this.setState({
+            open: true
+          })
+        })
+        .catch(err => {
+          console.log(err.message)
+        })
       }
+
     })
- 
   };
 
   handleClose = () => {
