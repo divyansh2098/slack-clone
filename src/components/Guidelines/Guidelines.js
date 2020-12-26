@@ -7,6 +7,7 @@ import Accordion from '@material-ui/core/Accordion';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import Typography from '@material-ui/core/Typography';
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles( (theme) => ({
     root1: {
@@ -49,7 +50,6 @@ const useStyles = makeStyles( (theme) => ({
 const Guidelines = () => {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
-
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
       };

@@ -1,9 +1,10 @@
 export const INITIAL_STATE = {
-    user: 'Divyansh'
+    user: null
 }
 
 export const actionTypes = {
-    SET_USER_DATA: 'SET_USER_DATA'
+    SET_USER_DATA: 'SET_USER_DATA',
+    UPDATE_USER_ID: 'UPDATE_USER_ID'
 }
 
 const auth_reducer = (state = INITIAL_STATE, action) => {

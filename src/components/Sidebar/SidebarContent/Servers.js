@@ -8,9 +8,9 @@ import AddChannelDialog from '../../helper/addChannelDialog'
 
 import db from '../../../firebase'
 
-import './Channels.css'
+import './Servers.css'
 
-class Channels extends Component {
+class Servers extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -70,7 +70,7 @@ class Channels extends Component {
                         <AddIcon />
                     </div>
                     <p className="addChannel_text">
-                        Add Channel
+                        Add Server
                     </p>
                 </div>
             </React.Fragment>
@@ -78,4 +78,4 @@ class Channels extends Component {
     }
 }
 
-export default Channels
+export default Servers

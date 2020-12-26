@@ -10,6 +10,14 @@ function Welcome(props) {
     const history = useHistory()
     const user = useSelector(state => state.user)
 
+    const forwardUser = () => {
+        if(!user.isNewUser) {
+            history.push('/chat')
+        } else {
+            props.click(true)
+        }
+    }
+
     return (
         <div className="welcome_container">
             {user && 
@@ -29,7 +37,7 @@ function Welcome(props) {
                         <li>Chat with friends</li>
                         <li>Feedback at divyanshnaman1998@gmail.com</li>
                     </ul>
-                    <button className="next-button" onClick={() => props.click(true)}>
+                    <button className="next-button" onClick={forwardUser}>
                         Continue
                         <DoubleArrowIcon /> 
                     </button>

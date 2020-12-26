@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button'
 import {useState} from 'react'
 import db from '../../firebase'
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,19 +31,20 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function SimpleDialog(props) {
-  const [channelName, setChannelName] = useState('')
+  const [serverName, setserverName] = useState('')
+  const user = useSelector(state=>state.user)
   
   const handleInputChange = (e) => {
-    setChannelName(e.target.value)
+    setserverName(e.target.value)
   }
   
   const submitFormHandler = () => {
-      if(channelName) {
-        const collRef = db.collection('channels')
+      if(serverName) {
+        const collRef = db.collection('servers')
         collRef.add({
-          name: channelName
+          name: serverName
         })
-        setChannelName('')
+        setserverName('')
         props.onClose();
       }
   }
@@ -58,8 +60,8 @@ function SimpleDialog(props) {
   
   return (
     <Dialog classes={{paper: classes.paper}} onClose={props.onClose} aria-labelledby="simple-dialog-title" open={props.open}>
-      <DialogTitle id="simple-dialog-title">Add a Channel</DialogTitle>
-      <TextField id="outlined-basic" label="Channel Name" variant="outlined" autoFocus value={channelName}
+      <DialogTitle id="simple-dialog-title">Add a Server</DialogTitle>
+      <TextField id="outlined-basic" label="Server Name" variant="outlined" autoFocus value={serverName}
         onChange={handleInputChange}
         onKeyUp = {handleKeyUp} />
       <Button classes={{root: classes.submitButton}} onClick={submitFormHandler}>Add</Button>

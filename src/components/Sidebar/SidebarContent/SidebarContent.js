@@ -1,15 +1,12 @@
 import React, { Component } from 'react'
-
-import SlackBrowser from './SlackBrowser'
-import Channels from './Channels'
+import Servers from './Servers'
 
 import './SidebarContent.css'
 class SidebarContent extends Component {
     render() {
         return (
             <div className="sidebar-content">
-                <SlackBrowser />
-                <Channels text="Channels"/>
+                <Servers text="Servers"/>
             </div>
         )
     }

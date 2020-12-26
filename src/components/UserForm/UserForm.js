@@ -10,6 +10,8 @@ import DoneIcon from '@material-ui/icons/Done';
 import ClearIcon from '@material-ui/icons/Clear';
 import SaveIcon from '@material-ui/icons/Save';
 
+import {setUserData} from '../../store/actions/action'
+
 import "./UserForm.css";
 import { connect } from "react-redux";
 import { withRouter } from 'react-router-dom';
@@ -71,7 +73,8 @@ class UserForm extends Component {
       instagram: "",
       facebook: "",
       twitter: "",
-      snapchat:""
+      snapchat:"",
+      servers: []
     },
     open:false,
     userNameExists: false  
@@ -97,24 +100,26 @@ class UserForm extends Component {
     let exists = false
     userData.userName && db.collection('users').doc(userData.userName).get().then(data=>{
       const givenDoc = data.data()
-      if(givenDoc) {
-        exists = true;
-        this.setState({
-          userNameExists: true
-        }, ( ) => { setTimeout(() => {
-          this.setState({userNameExists:false})
-      }, 5000); } )
-        
+        if(givenDoc) {
+          exists = true;
+          this.setState({
+            userNameExists: true
+          }, () => { setTimeout(() => {
+            this.setState({userNameExists:false})
+        }, 3000); } )
       }
     })
     .then(()=>{
       if(!exists) {
-        userData.userName && db.collection('users').doc(userData.userName).set({
+        userData.userName && db.collection('users').add({
           ...userData,
           ...user
         } ) 
-        .then( () => { 
+        .then( (docRef) => { 
           this.setState({open:true});
+          const updatedUser = {...user, id: docRef.id}
+          console.log(updatedUser)
+          this.props.setUserData(updatedUser)
          })
          .catch( (err) => {console.log(err.message)} )
       }
@@ -124,6 +129,7 @@ class UserForm extends Component {
 
   handleClose = () => {
     this.setState({open:false});
+    this.props.history.replace('/chat')
   };
 
   
@@ -260,7 +266,7 @@ class UserForm extends Component {
         </div>
         <div className="wrapper">
             <button onClick={this.handleClose} className="modal-button" >OK</button>
-          </div>
+        </div>
       </Dialog>
       </div>   
     );
@@ -273,4 +279,10 @@ const mapStatetoProps = state => {
   }
 }
 
-export default connect(mapStatetoProps,null)(withStyles(useStyles)(withRouter(UserForm)));
+const mapDispatchToProps = dispatch => {
+  return {
+    setUserData: (user) => dispatch(setUserData(user))
+  }
+}
+
+export default connect(mapStatetoProps,mapDispatchToProps)(withStyles(useStyles)(withRouter(UserForm)));
