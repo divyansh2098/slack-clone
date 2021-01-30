@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import firebase from 'firebase'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
 import {auth, provider} from '../../firebase'
 import {setUserData} from '../../store/index'
@@ -14,12 +16,13 @@ class Login extends Component {
         auth.signInWithPopup(provider)
             .then(result => {
                 const userData = {
-                    id: result.additionalUserInfo.profile.id,
+                    uid: firebase.auth().currentUser.uid,
                     name: result.user.displayName,
                     email: result.user.email,
                     isNewUser: result.additionalUserInfo.isNewUser,
-                    photoURL: result.user.photoURL
+                    photoURL: result.user.photoURL,
                 }
+                this.props.history.replace("/")
                 this.props.setUserData(userData)
             })
             .catch(err => {
@@ -51,5 +54,5 @@ const mapDispatchToProps = dispatch => {
     }   
 }
 
-export default connect(mapStatetoProps, mapDispatchToProps)(Login)
+export default connect(mapStatetoProps, mapDispatchToProps)(withRouter(Login))
 

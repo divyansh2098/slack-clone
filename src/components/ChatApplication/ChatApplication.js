@@ -1,8 +1,7 @@
 import React from 'react'
 import Sidebar from '../Sidebar/Sidebar'
-import {Switch, Route} from 'react-router-dom'
+import {Switch, Route, useParams} from 'react-router-dom'
 import Chatbox from '../Chatbox/Chatbox'
-import Welcome from '../Welcome/Welcome'
 import Appbar from '../../hoc/Appbar/Appbar'
 import Guidelines from '../Guidelines/Guidelines'
 
@@ -14,8 +13,8 @@ function ChatApplication() {
             <div className="main-application">
                 <Appbar>
                     <Switch>
-                        <Route path="/chat/roomId" exact component={Chatbox} />
-                        <Route path="/chat" exact component={Guidelines} />
+                        <Route path="/server/:serverId" exact component={Chatbox} />
+                        <Route path="/server" exact component={Guidelines} />
                     </Switch>
                 </Appbar>
             </div>

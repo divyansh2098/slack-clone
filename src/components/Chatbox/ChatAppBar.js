@@ -1,11 +1,14 @@
 import React from 'react'
 
 import './ChatAppBar.css'
-const ChatAppBar = () => {
+const ChatAppBar = (props) => {
     return (
-        <div className="chatAppBarContainer">
-            Channel Name
-        </div>
+        <React.Fragment>
+            <div className="chatAppBarContainer">
+                Hello This is a Channel
+            </div>
+            {props.children}
+        </React.Fragment>
     )
 }
 

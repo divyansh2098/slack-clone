@@ -21,7 +21,7 @@ class Servers extends Component {
     }
 
     componentDidMount() {
-        db.collection("channels").onSnapshot(snapshot=> {
+        db.collection("servers").onSnapshot(snapshot=> {
             this.setState({
                 channels: snapshot.docs.map(doc=> ({
                     id: doc.id,

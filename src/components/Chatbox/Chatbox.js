@@ -1,14 +1,15 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 import ChatAppBar from './ChatAppBar'
 
 import './Chatbox.css'
-import { withRouter } from 'react-router-dom';
 import db from '../../firebase'
-import ChatApplication from '../ChatApplication/ChatApplication';
-import ChatSection from './ChatSection'
+import { Switch, useHistory, useParams,Route } from 'react-router-dom';
+import ServerDetail from '../helper/ServerDetail'
 
-class Chatbox extends Component {
+const Chatbox = () => {
+    const history = useHistory()
+    const params = useParams()
     // constructor(props) {
     //     super(props)
     //     this.state = {
@@ -58,14 +59,18 @@ class Chatbox extends Component {
     // }
 
 
-    render() {
-        return (
-            <div className="chatBoxContainer">
-                <ChatAppBar />
-                <ChatSection />
-            </div>
-        )
-    }
+    return (
+        <div className="chatBoxContainer">
+            <ChatAppBar>
+                <Switch>
+                    <Route path={history.location.pathname}>
+                        <ServerDetail serverId={params.serverId}/>
+                    </Route>
+                    <Route path={history.location.pathname + "/channel/:channelId"} component={Chatbox}/>
+                </Switch>
+            </ChatAppBar>
+        </div>
+    )
 }
 
-export default withRouter(Chatbox)
+export default Chatbox

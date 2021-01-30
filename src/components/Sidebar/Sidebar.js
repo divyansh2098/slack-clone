@@ -8,7 +8,7 @@ class Sidebar extends Component {
         return (
             <div className="sidebar-container">
                 <SidebarHeader />
-                <SidebarContent />
+                <SidebarContent isServerSideBar/>
             </div>
         )
     }

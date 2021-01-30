@@ -4,12 +4,9 @@ import { withStyles } from "@material-ui/core/styles";
 import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
 import db from '../../firebase'
-import Dialog from '@material-ui/core/Dialog';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import DoneIcon from '@material-ui/icons/Done';
-import ClearIcon from '@material-ui/icons/Clear';
 import SaveIcon from '@material-ui/icons/Save';
 import firebase from 'firebase'
+import SaveSuccessPopup from '../helper/saveSuccessPopup'
 
 import {setUserData} from '../../store/actions/action'
 
@@ -77,7 +74,7 @@ class UserForm extends Component {
       snapchat:"",
       servers: []
     },
-    open:false,
+    open: false,
     userNameExists: false  
   };
 
@@ -246,37 +243,7 @@ class UserForm extends Component {
           </div>
         </form>
       </Card>
-
-      <Dialog
-        open={this.state.open}
-        onClose={this.handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle className={classes.modal} id="alert-dialog-title">SUBMITTED SUCCESFULLY</DialogTitle>
-        <div className="modal-div">
-          User Name : {this.state.userData.userName}
-          <br/>
-          About yourself : {this.state.userData.bio}
-          <br/>
-          A saying You live by : {this.state.userData.quote}
-          <br/>
-        </div>
-        <DialogTitle className={classes.modal}>Your Social Media Presence</DialogTitle>
-        <div className="modal-div">
-        <div className="social-divs"> 
-        FaceBook : {this.state.userData.facebook ? <DoneIcon style={{color: 'green'}} /> : <ClearIcon style={{color:'red'}} />}
-        Instagram : {this.state.userData.instagram ? <DoneIcon style={{color: 'green'}} /> : <ClearIcon style={{color:'red'}} />}
-        </div>
-        <div className="social-divs">
-        Twitter : {this.state.userData.twitter ? <DoneIcon style={{color: 'green'}} /> : <ClearIcon style={{color:'red'}} />}
-        SnapChat : {this.state.userData.snapchat ? <DoneIcon style={{color: 'green'}} /> : <ClearIcon style={{color:'red'}} />}
-        </div>
-        </div>
-        <div className="wrapper">
-            <button onClick={this.handleClose} className="modal-button" >OK</button>
-        </div>
-      </Dialog>
+      <SaveSuccessPopup open={this.state.open} closeHandler={this.handleClose}/>
       </div>   
     );
   }

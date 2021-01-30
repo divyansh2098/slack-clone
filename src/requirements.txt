@@ -1,0 +1,14 @@
+Server:
+    - Channel Id array
+    - Admin Id
+    - Name
+    - Logo
+
+User:
+    - Servers: array of Model({
+        ServerId,
+        role,
+        isBanned
+    })
+
+    - Adhoc Info: [Name, username etc]

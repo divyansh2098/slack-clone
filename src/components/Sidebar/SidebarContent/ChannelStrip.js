@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { useHistory } from 'react-router-dom'
 
 import './ChannelStrip.css'
@@ -7,7 +7,7 @@ const ChannelStrip = (props) => {
     const history = useHistory();
     
     const changeChannelHandler = () => {
-        history.push("/app/" + props.id)
+        history.push("/server/" + props.id)
     }
 
     return (
