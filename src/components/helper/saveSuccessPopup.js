@@ -1,21 +1,26 @@
 import React from 'react'
 import Dialog from '@material-ui/core/Dialog';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import doneImage from '../../assets/images/undraw_done.svg';
+import './saveSuccessPopup.css';
+
 
 const saveSuccessPopup = (props) => {
     return(
         <Dialog
-        open={props.open}
+        open="true"
         onClose={props.closeHandler}
         aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-            <div className="successPopupContainer">
-                <CheckCircleIcon className="circleIcon" />
-                <h2 className="welcomeText">
-
-                </h2>
+        aria-describedby="alert-dialog-description">
+           <div className="dialog-div">
+           <div>
+            <h2 className="welcomeText">submitted succesfully</h2>
             </div>
+            <img src={doneImage} alt=""/>
+            
+            <div className="button-container">
+                <button className="done-button" >Let's Go</button>
+            </div>
+        </div> 
       </Dialog>
     )
 }

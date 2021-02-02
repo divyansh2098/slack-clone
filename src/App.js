@@ -6,6 +6,7 @@ import Login from './components/Login/Login'
 import { useSelector } from 'react-redux'
 import Intro from './components/Intro/Intro'
 import ChatApplication from './components/ChatApplication/ChatApplication'
+import Savesuccess from './components/helper/saveSuccessPopup';
 
 function App() {
   const {user} = useSelector(state => state)
@@ -18,7 +19,7 @@ function App() {
             <Route path="/server" component={ChatApplication} />
           </Switch>
         : 
-        <Login />
+        <Login/>
       }
       </BrowserRouter>
     </div>
