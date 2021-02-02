@@ -15,7 +15,7 @@ const saveSuccessPopup = (props) => {
            <div>
             <h2 className="welcomeText">submitted succesfully</h2>
             </div>
-            <img src={doneImage} alt=""/>
+            <img className="doneImage" src={doneImage} alt=""/>
             
             <div className="button-container">
                 <button className="done-button" >Let's Go</button>
