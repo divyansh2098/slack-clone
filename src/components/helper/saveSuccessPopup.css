@@ -10,7 +10,7 @@
     background-color:#022449;
 }
 
-img {
+.doneImage {
     object-fit: contain;
     display: flex;
     height: 150px;
