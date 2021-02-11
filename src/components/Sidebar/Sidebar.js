@@ -1,4 +1,3 @@
-import { Container } from '@material-ui/core'
 import React, { Component } from 'react'
 import SidebarHeader from './SidebarHeader/SidebarHeader'
 import SidebarContent from './SidebarContent/SidebarContent'
@@ -8,7 +7,7 @@ class Sidebar extends Component {
         return (
             <div className="sidebar-container">
                 <SidebarHeader />
-                <SidebarContent isServerSideBar/>
+                <SidebarContent />
             </div>
         )
     }

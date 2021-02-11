@@ -3,8 +3,8 @@ import React, { Component } from 'react'
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import AddIcon from '@material-ui/icons/Add';
-import ChannelStrip from './ChannelStrip'
-import AddChannelDialog from '../../helper/addChannelDialog'
+import ServerStrip from './ServerStrip'
+import AddServerDialog from '../../helper/addServerDialog'
 
 import db from '../../../firebase'
 
@@ -14,16 +14,16 @@ class Servers extends Component {
     constructor(props){
         super(props);
         this.state = {
-            showChannelList: false,
-            channels: [],
-            showAddChannelDialog: false
+            showServerList: false,
+            servers: [],
+            showAddServerDialog: false
         }
     }
 
     componentDidMount() {
         db.collection("servers").onSnapshot(snapshot=> {
             this.setState({
-                channels: snapshot.docs.map(doc=> ({
+                servers: snapshot.docs.map(doc=> ({
                     id: doc.id,
                     name: doc.data().name
                 }))
@@ -31,45 +31,45 @@ class Servers extends Component {
         })
     }
 
-    toggleAddChannelDialog = () => {
+    toggleAddServerDialog = () => {
         this.setState(prevState=>{
             return {
                 ...prevState,
-                showAddChannelDialog: !prevState.showAddChannelDialog
+                showAddServerDialog: !prevState.showAddServerDialog
             }
         })
     }
 
-    handleExpandChannels = () => {
+    handleExpandServers = () => {
         this.setState(prevState=> {
             return({
-                showChannelList : !prevState.showChannelList
+                showServerList : !prevState.showServerList
             })
         })
     }
     render() {
-        let arrow = this.state.showChannelList ? <ArrowDropDownIcon /> : <ArrowRightIcon />
-        let channelStrips = this.state.showChannelList ? this.state.channels.map(channel => <ChannelStrip key={channel.id} id={channel.id} text={channel.name} />)
+        let arrow = this.state.showServerList ? <ArrowDropDownIcon /> : <ArrowRightIcon />
+        let serverStrips = this.state.showServerList ? this.state.servers.map(server => <ServerStrip key={server.id} id={server.id} text={server.name} />)
                                                         :
                                                         null
         return (
             <React.Fragment>
-                <AddChannelDialog open = {this.state.showAddChannelDialog} onClose={this.toggleAddChannelDialog} />
-                <div className="channelsContainer">
-                    <div className="expandIcon" onClick = {this.handleExpandChannels}>
+                <AddServerDialog open = {this.state.showAddServerDialog} onClose={this.toggleAddServerDialog} />
+                <div className="serversContainer">
+                    <div className="expandIcon" onClick = {this.handleExpandServers}>
                         {arrow}
-                        {this.props.text}
+                        Servers
                     </div>
-                    <div className="addChannelIcon" onClick={this.toggleAddChannelDialog}>
+                    <div className="addServerIcon" onClick={this.toggleAddServerDialog}>
                         <AddIcon />
                     </div>
                 </div>
-                {channelStrips}
-                <div className="add_channel" onClick={this.toggleAddChannelDialog}>
-                    <div className="addChannel__icon">
+                {serverStrips}
+                <div className="add_server" onClick={this.toggleAddServerDialog}>
+                    <div className="addServer__icon">
                         <AddIcon />
                     </div>
-                    <p className="addChannel_text">
+                    <p className="addServer_text">
                         Add Server
                     </p>
                 </div>

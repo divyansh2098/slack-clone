@@ -2,3 +2,8 @@
     height: 84vh;
     background-color: var(--secondary-background);
 }
+
+.chatSectionContainer .messagesContainer {
+    height: 90%;
+    overflow-y: auto;
+}

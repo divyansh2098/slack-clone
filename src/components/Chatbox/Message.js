@@ -6,13 +6,13 @@ function Message(props) {
     return (
         <div className="message_container">
             <div className="message__data">
-                <img src={messageData.image} alt="user_image" className="userImage"/>
+                <img src={messageData.user.photoURL} alt="user_image" className="userImage"/>
                 <div className="message">
                     {messageData.message}
                 </div>
             </div>
             <div className="time__stamp">
-                <p>{messageData && messageData.timestamp && new Date(messageData.timestamp.toDate()).toUTCString()}</p>
+                <p>{messageData && messageData.timestamp && new Date(messageData.timestamp).toUTCString()}</p>
             </div>
         </div>
     )

@@ -1,4 +1,4 @@
-.serversContainer {
+.channelsContainer {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -7,43 +7,43 @@
     cursor: pointer;
 }
 
-.serversContainer:hover {
+.channelsContainer:hover {
     color: var(--primary-highlight);
 }
 
-.serversContainer:hover > .addServerIcon > .MuiSvgIcon-root{
+.channelsContainer:hover > .addChannelIcon > .MuiSvgIcon-root{
     color: var(--primary-highlight);
     visibility: visible;
 }
 
-.serversContainer .expandIcon > .MuiSvgIcon-root {
+.channelsContainer .expandIcon > .MuiSvgIcon-root {
     margin-right: 7px;
     font-size: 20px;
 }
 
-.serversContainer .expandIcon {
+.channelsContainer .expandIcon {
     display: flex;
     align-items: center;
 }
 
-.serversContainer .addServerIcon > .MuiSvgIcon-root {
+.channelsContainer .addChannelIcon > .MuiSvgIcon-root {
     display: flex;
     align-items: center;
     visibility: hidden;
 }
 
-.add_server {
+.add_channel {
     display: flex;
     align-items: center;
     margin: 0px 0px 10px 15px;
     cursor: pointer;
 }
 
-.add_server:hover {
+.add_channel:hover {
     color: var(--primary-highlight);
 }
 
-.add_server .addServer__icon {
+.add_channel .addChannel__icon {
     display: flex;
     align-items: center;
     padding: 3px;
@@ -52,6 +52,6 @@
     margin-right: 5px;
 }
 
-.addServer__icon .MuiSvgIcon-root {
+.addChannel__icon .MuiSvgIcon-root {
     font-size: 18px;
 }

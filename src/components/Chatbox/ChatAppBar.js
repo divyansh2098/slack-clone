@@ -5,7 +5,9 @@ const ChatAppBar = (props) => {
     return (
         <React.Fragment>
             <div className="chatAppBarContainer">
-                Hello This is a Channel
+                <div className="ChannelAppBarHeader">
+                    {props.channelData.name}                
+                </div>
             </div>
             {props.children}
         </React.Fragment>

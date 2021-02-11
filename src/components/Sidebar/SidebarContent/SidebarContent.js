@@ -6,7 +6,7 @@ class SidebarContent extends Component {
     render() {
         return (
             <div className="sidebar-content">
-                <Servers text="Servers"/>
+                <Servers/>
             </div>
         )
     }

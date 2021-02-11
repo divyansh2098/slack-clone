@@ -1,12 +1,14 @@
 import React from 'react';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import firebase from 'firebase'
 import Dialog from '@material-ui/core/Dialog';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button'
 import {useState} from 'react'
 import db from '../../firebase'
 import { useSelector } from 'react-redux';
-import './addChannelDialog.css'
-import { useParams } from 'react-router-dom';
+import './addServerDialog.css'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,42 +33,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function SimpleDialog(props) {
-  const [channelName, setchannelName] = useState('')
+  const [serverName, setserverName] = useState('')
   const user = useSelector(state=>state.user)
-  const params = useParams()
-  const serverId = params.serverId
   
   const handleInputChange = (e) => {
-    setchannelName(e.target.value)
+    setserverName(e.target.value)
   }
   
   const submitFormHandler = () => {
-      if(channelName) {
-        const channelRef = db.collection('channels')
-        const serverDocRef = db.collection('servers').doc(serverId)
-        const addChannel = async () => {
-          const response = await channelRef.add({'name': channelName,'created-by': user.uid})
-          const channelId = response.id
-          await addChannelToServer(channelId) 
-        }
-        const addChannelToServer = async (channelId) => {
-          const response = await serverDocRef.get()
-          const serverData = {...response.data()}
-          let channels = null
-          if(serverData.channels) {
-            channels = [...serverData.channels]
-            channels.push(channelId)
-          } else {
-            channels = [channelId]
-          }
-          if(channels) {
-            serverDocRef.set({
-              channels: channels
-            },{merge: true});
-          }
-        }
-        addChannel()
-        setchannelName('')
+      if(serverName) {
+        const collRef = db.collection('servers')
+        collRef.add({
+          'name': serverName,
+          'admin': user.uid
+        })
+        setserverName('')
         props.onClose();
       }
   }
@@ -79,13 +60,14 @@ function SimpleDialog(props) {
   }
 
   const classes = useStyles()
+  
   return (
     <Dialog classes={{paper: classes.paper}} onClose={props.onClose} aria-labelledby="simple-dialog-title" open={props.open}>
-      <div className="channelFormHolder">
+      <div className="serverFormHolder">
         <div className="dialogHeading">
-          Add a Channel
+          Add a Server
         </div>
-        <TextField id="outlined-basic" label="Channel Name" variant="outlined" autoFocus value={channelName}
+        <TextField id="outlined-basic" label="Server Name" variant="outlined" autoFocus value={serverName}
           onChange={handleInputChange}
           onKeyUp = {handleKeyUp} />
         <button className="submitButton" onClick={submitFormHandler}>

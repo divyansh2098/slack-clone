@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux'
 import Intro from './components/Intro/Intro'
 import ChatApplication from './components/ChatApplication/ChatApplication'
 import Savesuccess from './components/helper/saveSuccessPopup';
+import ServerDetail from './components/helper/ServerDetail';
 
 function App() {
   const {user} = useSelector(state => state)
@@ -16,7 +17,8 @@ function App() {
       { user ?
           <Switch>
             <Route path="/" exact component={Intro} />
-            <Route path="/server" component={ChatApplication} />
+            <Route path="/app" component={ChatApplication} />
+            <Route path="/server/:serverId" component={ServerDetail}/>
           </Switch>
         : 
         <Login/>

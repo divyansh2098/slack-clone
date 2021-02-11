@@ -1,15 +1,48 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 
 import ChatAppBar from './ChatAppBar'
+import ChatSection from './ChatSection'
+import ChatInput from './ChatInput'
+import Loading from '../helper/Loading'
 
-import './Chatbox.css'
 import db from '../../firebase'
-import { Switch, useHistory, useParams,Route } from 'react-router-dom';
-import ServerDetail from '../helper/ServerDetail'
+import './Chatbox.css'
+import { useParams } from 'react-router-dom';
 
-const Chatbox = () => {
-    const history = useHistory()
+const Chatbox = (props) => {
     const params = useParams()
+    const [channelData, setChannelData] = useState()
+    const [messages, setMessages] = useState()
+
+    const getChannelData = async (channelId) => {
+        const channelData = await db.collection('channels').doc(channelId).get()
+        setChannelData(channelData.data())
+    }
+
+    const getChannelMessages = (channelId) => {
+        const unsubscribe = db.collection('channels').doc(channelId).collection('messages').orderBy('timestamp').onSnapshot(
+            snapshot => {
+                setMessages(
+                    snapshot.docs.map(doc => {
+                        const doc_data = { ...doc.data() }
+                        return {
+                            id: doc.id,
+                            user: { ...doc_data.user },
+                            message: doc_data.message,
+                            timestamp: doc_data.timestamp
+                        }
+                    })
+                )
+            }
+        )
+        return unsubscribe
+    }
+
+    useEffect(() => {
+        const channelId = params.channelId
+        getChannelData(channelId)
+        return getChannelMessages(channelId) /* returning the callback to be executed when component */
+    },[params.channelId])
     // constructor(props) {
     //     super(props)
     //     this.state = {
@@ -57,19 +90,15 @@ const Chatbox = () => {
     //         })
     //     }
     // }
-
-
-    return (
+    return ( channelData ?
         <div className="chatBoxContainer">
-            <ChatAppBar>
-                <Switch>
-                    <Route path={history.location.pathname}>
-                        <ServerDetail serverId={params.serverId}/>
-                    </Route>
-                    <Route path={history.location.pathname + "/channel/:channelId"} component={Chatbox}/>
-                </Switch>
+            <ChatAppBar channelData={channelData}>
+                <ChatSection channelId={params.channelId} messages={messages}/>
+                <ChatInput channelId={params.channelId}/>
             </ChatAppBar>
         </div>
+        :
+        <Loading />
     )
 }
 

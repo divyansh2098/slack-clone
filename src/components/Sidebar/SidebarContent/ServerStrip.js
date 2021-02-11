@@ -1,17 +1,17 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 
-import './ChannelStrip.css'
-const ChannelStrip = (props) => {
+import './ServerStrip.css'
+const ServerStrip = (props) => {
 
     const history = useHistory();
     
-    const changeChannelHandler = () => {
+    const changeServerHandler = () => {
         history.push("/server/" + props.id)
     }
 
     return (
-        <div className="channelStrip" onClick={changeChannelHandler}>
+        <div className="serverStrip" onClick={changeServerHandler}>
             <p className="hash">#</p>
             <div className="description">
                 {props.text}
@@ -20,4 +20,4 @@ const ChannelStrip = (props) => {
     )
 }
 
-export default ChannelStrip
+export default ServerStrip

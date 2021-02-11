@@ -1,0 +1,56 @@
+.serverDetailContainer {
+    display: flex;
+    min-height: var(--page-height);
+}
+
+.serverDetailContainer .serverDetails {
+    flex: 0.75;
+}
+
+.serverDetailContainer .serverImage {
+    height: 200px;
+    width: 200px;
+}
+
+.serverDetailContainer .serverDetailContainer {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.serverDetailContainer .detailContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border: 1px solid var(--primary-highlight);
+    border-radius: 16px;
+}
+
+.serverDetailContainer .heading {
+    padding: 20px;
+}
+
+.serverDetailContainer .detailContainer {
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 700;
+}
+
+.serverDetailContainer .adminDetails {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.adminDetails .adminImage {
+    margin-top: 20px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}

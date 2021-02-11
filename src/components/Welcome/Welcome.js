@@ -12,7 +12,7 @@ function Welcome(props) {
 
     const forwardUser = () => {
         if(!user.isNewUser) {
-            history.push('/server')
+            history.push('/app')
         } else {
             props.click(true)
         }
